@@ -4,6 +4,14 @@
 @utility container {
   @apply px-5 xl:px-27.5 mx-auto;
 }
+@layer components {
+  .dir-rtl {
+    direction: rtl;
+  }
+  .mobile-overlay {
+    @apply z-40 fixed w-full h-screen bg-black/50 inset-0 invisible opacity-0;
+  }
+}
 
 @layer base {
   @font-face {

@@ -4,7 +4,7 @@ import { IoSearch } from "react-icons/io5";
 import { Button } from "@/components/ui/button"
 export default function Navbar() {
 	return (
-		<nav className="flex items-center justify-between px-17 py-3">
+		<div className="flex items-center justify-between px-17 py-3">
 			{/* logo */}
 			<Image width={50} height={50} src="/images/logo.webp" alt="logo" />
 			{/* search box */}
@@ -17,6 +17,6 @@ export default function Navbar() {
 				<Button className="rounded-full" variant="ghost">ورود</Button>
                 <Button className="rounded-full bg-sky-700 font-danaBold">ثبت نام</Button>
 			</div>
-		</nav>
+		</div>
 	);
 }
