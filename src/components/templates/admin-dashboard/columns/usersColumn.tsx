@@ -1,27 +1,24 @@
+"use client";
+
 import * as React from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import StatusBadge from "../DataTable/StatusBadge";
-
 type posts = {
 	id: string;
-	title: string;
-	author: string;
-	category: string;
-	content: string;
-	summary: string;
-	image: string;
-	status: "approved" | "pending" | "rejected";
-	comment_count: number;
-	like_count: number;
+	email: string;
+	verified: string;
+	username: string;
+	name: string;
+	avatar: string;
+	role: string;
 	created: string;
 	updated: string;
 };
 
-export const columns: ColumnDef<posts>[] = [
+export const UsersColumns: ColumnDef<posts>[] = [
 	{
 		id: "select",
 		header: ({ table }) => <Checkbox checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")} onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)} aria-label="Select all" />,
@@ -30,24 +27,24 @@ export const columns: ColumnDef<posts>[] = [
 		enableHiding: false,
 	},
 	{
-		accessorKey: "title",
-		header: "Title",
-		cell: ({ row }) => <div className="capitalize">{row.getValue("title")}</div>,
+		accessorKey: "id",
+		header: "id",
+		cell: ({ row }) => <div className="capitalize">{row.getValue("id")}</div>,
 	},
 	{
-		accessorKey: "author",
-		header: "Author id",
-		cell: ({ row }) => <div className="capitalize">{row.getValue("author")}</div>,
+		accessorKey: "email",
+		header: "email",
+		cell: ({ row }) => <div className="capitalize w-70 text-xs overflow-hidden">{row.getValue("email")}</div>,
 	},
 	{
-		accessorKey: "category",
-		header: "Category",
-		cell: ({ row }) => <div className="capitalize">{row.getValue("category")}</div>,
+		accessorKey: "username",
+		header: "username",
+		cell: ({ row }) => <div className="capitalize">{row.getValue("username")}</div>,
 	},
-	{
-		accessorKey: "status",
-		header: "Status",
-		cell: ({ row }) => <div className="capitalize text-right"><StatusBadge status={row.getValue("status")} /></div>
+    {
+		accessorKey: "role",
+		header: "role",
+		cell: ({ row }) => <div className="capitalize">{row.getValue("role")}</div>,
 	},
 	{
 		id: "actions",

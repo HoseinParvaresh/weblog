@@ -45,7 +45,7 @@ const data = {
   navMain: [
     {
       title: "داشبورد",
-      url: "#",
+      url: "http://localhost:3000/admin-dashboard",
       icon: SquareTerminal,
       isActive: true,
     },
@@ -56,7 +56,7 @@ const data = {
       items: [
         {
           title: "لیست پست ها",
-          url: "#",
+          url: "http://localhost:3000/admin-dashboard/posts",
         },
         {
           title: "افزودن پست جدید",
@@ -79,7 +79,7 @@ const data = {
       items: [
         {
           title: "لیست کاربران",
-          url: "#",
+          url: "http://localhost:3000/admin-dashboard/users",
         },
         {
           title: "گزارش فعالیت",
@@ -87,48 +87,6 @@ const data = {
         },
       ],
     },
-    {
-      title: "گزارش‌ها",
-      url: "#",
-      icon: TbReportAnalytics,
-      items: [
-        {
-          title: "آمار فروش و بازدید",
-          url: "#",
-        },
-        {
-          title: "رفتار کاربران",
-          url: "#",
-        },
-        {
-          title: "نمودارها و تحلیل‌ها",
-          url: "#",
-        }
-      ],
-    },
-    {
-      title: "تنظیمات سیستم",
-      url: "#",
-      icon: TbSettings,
-      items: [
-        {
-          title: "تنظیمات کلی",
-          url: "#",
-        },
-        {
-          title: "سئو",
-          url: "#",
-        },
-        {
-          title: "ایمیل‌ها / نوتیفیکیشن‌ها",
-          url: "#",
-        },
-        {
-          title: "API keys / تنظیمات امنیتی",
-          url: "#",
-        }
-      ],
-    }
   ],
 }
 

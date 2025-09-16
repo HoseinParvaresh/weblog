@@ -43,8 +43,8 @@ export default function StatusBadge({ status }: StatusBadgeProps) {
       style={{ color: statusInfo.color }}
       className="flex items-center gap-1"
     >
-      <Icon className="size-4.5" />
       <span className="font-danaBold">{statusInfo.label}</span>
+      <Icon className="size-4.5" />
     </div>
   );
 }
