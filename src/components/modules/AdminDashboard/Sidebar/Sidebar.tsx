@@ -48,6 +48,12 @@ const data = {
       url: "http://localhost:3000/admin-dashboard",
       icon: SquareTerminal,
       isActive: true,
+      items: [
+        {
+          title: "خانه",
+          url: "http://localhost:3000/admin-dashboard",
+        }
+      ],
     },
     {
       title: "مدیریت پست ها",
@@ -60,15 +66,11 @@ const data = {
         },
         {
           title: "افزودن پست جدید",
-          url: "#",
-        },
-        {
-          title: "دسته بندی پست ها",
-          url: "#",
+          url: "http://localhost:3000/admin-dashboard/posts/create",
         },
         {
           title: "لیست کامنت های پست ها",
-          url: "#",
+          url: "http://localhost:3000/admin-dashboard/comments",
         }
       ],
     },
@@ -82,8 +84,23 @@ const data = {
           url: "http://localhost:3000/admin-dashboard/users",
         },
         {
-          title: "گزارش فعالیت",
-          url: "#",
+          title: "افزودن کاربر جدید",
+          url: "http://localhost:3000/admin-dashboard/users/create",
+        },
+      ],
+    },
+    {
+      title: "مدیریت دسته بندی ها",
+      url: "#",
+      icon: HiOutlineUsers,
+      items: [
+        {
+          title: "لیست دسته بندی",
+          url: "http://localhost:3000/admin-dashboard/categories",
+        },
+        {
+          title: "افزودن دسته بندی جدید",
+          url: "http://localhost:3000/admin-dashboard/categories/create",
         },
       ],
     },

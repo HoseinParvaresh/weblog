@@ -6,6 +6,7 @@ import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+
 type posts = {
 	id: string;
 	email: string;
@@ -34,17 +35,22 @@ export const UsersColumns: ColumnDef<posts>[] = [
 	{
 		accessorKey: "email",
 		header: "email",
-		cell: ({ row }) => <div className="capitalize w-70 text-xs overflow-hidden">{row.getValue("email")}</div>,
+		cell: ({ row }) => <div>{row.getValue("email")}</div>,
 	},
 	{
 		accessorKey: "username",
 		header: "username",
-		cell: ({ row }) => <div className="capitalize">{row.getValue("username")}</div>,
+		cell: ({ row }) => <div>{row.getValue("username")}</div>,
+	},
+	{
+		accessorKey: "name",
+		header: "Name",
+		cell: ({ row }) => <div>{row.getValue("name")}</div>,
 	},
     {
 		accessorKey: "role",
 		header: "role",
-		cell: ({ row }) => <div className="capitalize">{row.getValue("role")}</div>,
+		cell: ({ row }) => <div>{row.getValue("role")}</div>,
 	},
 	{
 		id: "actions",
@@ -62,9 +68,9 @@ export const UsersColumns: ColumnDef<posts>[] = [
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align="end">
 						<DropdownMenuLabel>Actions</DropdownMenuLabel>
-						<DropdownMenuItem onClick={() => navigator.clipboard.writeText(payment.id)}>Copy payment ID</DropdownMenuItem>
+						<DropdownMenuItem onClick={() => navigator.clipboard.writeText(payment.id)}>Copy ID</DropdownMenuItem>
 						<DropdownMenuSeparator />
-						<DropdownMenuItem>View customer</DropdownMenuItem>
+						<DropdownMenuItem >open view</DropdownMenuItem>
 						<DropdownMenuItem>View payment details</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>

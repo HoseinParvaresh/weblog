@@ -1,5 +1,6 @@
-import * as React from "react"
+"use client"
 
+import * as React from "react"
 import { cn } from "@/utility/utilityFunction"
 
 function Card({ className, ...props }: React.ComponentProps<"div">) {

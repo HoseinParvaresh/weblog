@@ -5,23 +5,23 @@ import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFiltered
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
 	data: TData[];
-  }
+}
 
-export default function DataTable<TData, TValue>({data,columns} : DataTableProps<TData, TValue>) {
-
+export default function DynamicTable<TData, TValue>({ data, columns }: DataTableProps<TData, TValue>) {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
 	const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
+	const pathname = usePathname();
 
 	const table = useReactTable({
 		data,
@@ -82,7 +82,15 @@ export default function DataTable<TData, TValue>({data,columns} : DataTableProps
 							table.getRowModel().rows.map((row) => (
 								<TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
 									{row.getVisibleCells().map((cell) => (
-										<TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+										<TableCell key={cell.id}>
+											{cell.column.id === "id" ? (
+												<Link href={`${pathname}/${cell.getValue()}`}>
+													<p className="flex items-center justify-center py-1 hover:bg-neutral-200 rounded-sm">{cell.getValue() as string}</p>
+												</Link>
+											) : (
+												flexRender(cell.column.columnDef.cell, cell.getContext())
+											)}
+										</TableCell>
 									))}
 								</TableRow>
 							))

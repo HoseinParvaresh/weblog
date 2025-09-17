@@ -26,7 +26,7 @@ export const CategoryColumns: ColumnDef<category>[] = [
 	{
 		accessorKey: "id",
 		header: "id",
-		cell: ({ row }) => <div className="capitalize">{row.getValue("id")}</div>,
+		cell: ({ row }) => <div>{row.getValue("id")}</div>,
 	},
 	{
 		accessorKey: "name",

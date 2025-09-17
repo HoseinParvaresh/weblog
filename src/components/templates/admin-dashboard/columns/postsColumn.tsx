@@ -6,7 +6,8 @@ import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import StatusBadge from "../DataTable/StatusBadge";
+import StatusBadge from "@/utility/StatusBadge";
+
 type posts = {
 	id: string;
 	title: string;
@@ -33,17 +34,17 @@ export const PostsColumns: ColumnDef<posts>[] = [
 	{
 		accessorKey: "id",
 		header: "id",
-		cell: ({ row }) => <div className="capitalize">{row.getValue("id")}</div>,
+		cell: ({ row }) => <div>{row.getValue("id")}</div>,
 	},
 	{
 		accessorKey: "title",
 		header: "Title",
-		cell: ({ row }) => <div className="capitalize w-70overflow-hidden">{row.getValue("title")}</div>,
+		cell: ({ row }) => <div className="w-70 overflow-hidden">{row.getValue("title")}</div>,
 	},
 	{
 		accessorKey: "author",
 		header: "Author id",
-		cell: ({ row }) => <div className="capitalize">{row.getValue("author")}</div>,
+		cell: ({ row }) => <div>{row.getValue("author")}</div>,
 	},
 	{
 		accessorKey: "category",
