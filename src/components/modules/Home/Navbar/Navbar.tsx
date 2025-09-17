@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { IoSearch } from "react-icons/io5";
 import { Button } from "@/components/ui/button"
+import Link from "next/link";
 export default function Navbar() {
 	return (
 		<div className="flex items-center justify-between px-17 py-3">
@@ -14,7 +15,7 @@ export default function Navbar() {
 			</div>
 			{/* register buttons */}
 			<div className="flex gap-1">
-				<Button className="rounded-full" variant="ghost">ورود</Button>
+				<Link href="/admin-dashboard"><Button className="rounded-full cursor-pointer" variant="ghost">ورود به داشبورد ادمین</Button></Link>
                 <Button className="rounded-full bg-sky-700 font-danaBold">ثبت نام</Button>
 			</div>
 		</div>

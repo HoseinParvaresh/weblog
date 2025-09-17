@@ -85,7 +85,7 @@ export default function DynamicTable<TData, TValue>({ data, columns }: DataTable
 										<TableCell key={cell.id}>
 											{cell.column.id === "id" ? (
 												<Link href={`${pathname}/${cell.getValue()}`}>
-													<p className="flex items-center justify-center py-1 hover:bg-neutral-200 rounded-sm">{cell.getValue() as string}</p>
+													<p className="px-2 py-1 hover:bg-neutral-200 rounded-sm w-max">{cell.getValue() as string}</p>
 												</Link>
 											) : (
 												flexRender(cell.column.columnDef.cell, cell.getContext())

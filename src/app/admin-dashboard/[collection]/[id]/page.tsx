@@ -1,14 +1,35 @@
 import PocketBase from "pocketbase";
+import DynamicForm from "@/components/modules/AdminDashboard/DynamicForms/DynamicForms";
+import { fetchCollection } from "@/utility/utilityFunction";
 
-export default async function page({ params }) {
+type Props = { params: { collection: string; id: string } };
+
+export default async function page({ params }: Props) {
+	const collectionName = params.collection;
 	const pb = new PocketBase("http://127.0.0.1:8090");
+	let categories = [];
 
-	await pb.collection("_superusers").authWithPassword("hoseinp753@gmail.com", "hosein2681");
+	try {
+		const record = await pb.collection(`${params.collection}`).getOne(`${params.id}`);
 
-	// fetch a paginated collections list
-	const collection = await pb.collections.getOne('posts');
+		await pb.collection("_superusers").authWithPassword("hoseinp753@gmail.com", "hosein2681");
+		const collection = await pb.collections.getOne(`${collectionName}`);
+		if (!collection || collectionName === "comments") return <h1>404</h1>;
 
-	console.log(collection);
+		if (collectionName === "posts") {
+			categories = await fetchCollection("categories");
+		}
+		const fields = collection.fields || [];
 
-	return <div>id - {params.id}</div>;
+		const hiddenFields = ["id", "author", "comment_count", "like_count", "created", "updated", "tokenKey", "image", "avatar"];
+		const visibleFields = fields.filter((field: any) => !hiddenFields.includes(field.name));
+
+		return (
+			<div>
+				<DynamicForm fields={visibleFields} collectionName={collectionName} record={record} categories={categories.items} />
+			</div>
+		);
+	} catch (err) {
+		return <h1>404</h1>;
+	}
 }

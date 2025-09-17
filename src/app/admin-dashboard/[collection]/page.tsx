@@ -1,6 +1,7 @@
 import DynamicTable from "@/components/modules/AdminDashboard/DynamicTable/DynamicTable";
 import { findColumns } from "@/utility/utilityFunction";
 import { fetchCollection } from "@/utility/utilityFunction";
+import { ColumnDef } from "@tanstack/react-table";
 interface PageParams {
   params: {
     collection: string;
@@ -25,6 +26,7 @@ export interface Posts {
   created: string;
   updated: string;
 }
+type Collection = "posts" | "users" | "comments" | "categories";
 
 function mapCategoriesToPosts(posts: Posts[], categories: Category[]) {
   const categoryMap = Object.fromEntries(
@@ -47,11 +49,11 @@ export default async function Page({ params }: PageParams) {
       dataWithRelations = mapCategoriesToPosts(data.items,categories.items as Category[]);
     }
 
-    const columns = findColumns(params.collection);
+    const columns = findColumns(params.collection as Collection);
 
     return (
       <div dir="ltr" className="bg-white px-5 py-3 rounded-lg">
-        <DynamicTable data={dataWithRelations} columns={columns} />
+        <DynamicTable data={dataWithRelations} columns={columns as ColumnDef<Posts, unknown>[]} />
       </div>
     );
   } catch (error) {
