@@ -1,7 +1,7 @@
 // app/admin/layout.tsx
-import { SidebarProvider } from "@/components/ui/sidebar"
-import { Sidebar } from "@/components/modules/AdminDashboard/Sidebar/Sidebar";
-import Navbar from "@/components/modules/AdminDashboard/Navbar/Navbar";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { Sidebar } from "@/components/admin-dashboard/sidebar/Sidebar";
+import Navbar from "@/components/admin-dashboard/navbar/Navbar";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
 	return (
@@ -9,7 +9,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 			{/* sidebar */}
 			<Sidebar side="right" />
 			<section className="w-full">
-				<Navbar admin={true} />
+				<Navbar />
 				{/* content */}
 				<section className="flex flex-col gap-6 p-6 bg-zinc-100">{children}</section>
 			</section>

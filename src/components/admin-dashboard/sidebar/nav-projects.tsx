@@ -25,6 +25,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
+
 export function NavProjects({
   projects,
 }: {

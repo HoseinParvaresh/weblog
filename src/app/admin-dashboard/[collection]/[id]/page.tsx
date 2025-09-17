@@ -1,35 +1,56 @@
 import PocketBase from "pocketbase";
-import DynamicForm from "@/components/modules/AdminDashboard/DynamicForms/DynamicForms";
+import DynamicForm from "@/components/admin-dashboard/forms/DynamicForms";
 import { fetchCollection } from "@/utility/utilityFunction";
 
 type Props = { params: { collection: string; id: string } };
 
-export default async function page({ params }: Props) {
-	const collectionName = params.collection;
-	const pb = new PocketBase("http://127.0.0.1:8090");
-	let categories = [];
+const HIDDEN_FIELDS = [
+  "id",
+  "author",
+  "comment_count",
+  "like_count",
+  "created",
+  "updated",
+  "tokenKey",
+  "image",
+  "avatar",
+];
 
-	try {
-		const record = await pb.collection(`${params.collection}`).getOne(`${params.id}`);
+export default async function Page({ params }: Props) {
+  const { collection: collectionName, id } = params;
+  const pb = new PocketBase("http://127.0.0.1:8090");
+  let categories: any[] = [];
 
-		await pb.collection("_superusers").authWithPassword("hoseinp753@gmail.com", "hosein2681");
-		const collection = await pb.collections.getOne(`${collectionName}`);
-		if (!collection || collectionName === "comments") return <h1>404</h1>;
+  try {
+    await pb.collection("_superusers").authWithPassword(
+      "hoseinp753@gmail.com",
+      "hosein2681"
+    );
 
-		if (collectionName === "posts") {
-			categories = await fetchCollection("categories");
-		}
-		const fields = collection.fields || [];
+    const record = await pb.collection(collectionName).getOne(id);
+    const collection = await pb.collections.getOne(collectionName);
+    if (!collection || collectionName === "comments") return <h1>404</h1>;
 
-		const hiddenFields = ["id", "author", "comment_count", "like_count", "created", "updated", "tokenKey", "image", "avatar"];
-		const visibleFields = fields.filter((field: any) => !hiddenFields.includes(field.name));
+    if (collectionName === "posts") {
+      const categoriesData = await fetchCollection("categories");
+      categories = categoriesData.items;
+    }
 
-		return (
-			<div>
-				<DynamicForm fields={visibleFields} collectionName={collectionName} record={record} categories={categories.items} />
-			</div>
-		);
-	} catch (err) {
-		return <h1>404</h1>;
-	}
+    const visibleFields = (collection.fields || []).filter(
+      (field: any) => !HIDDEN_FIELDS.includes(field.name)
+    );
+
+    return (
+      <div>
+        <DynamicForm
+          fields={visibleFields}
+          collectionName={collectionName}
+          record={record}
+          categories={categories}
+        />
+      </div>
+    );
+  } catch (err) {
+    return <h1>404</h1>;
+  }
 }

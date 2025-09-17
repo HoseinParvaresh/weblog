@@ -13,7 +13,7 @@ import {
 
 import { NavMain } from "./nav-main"
 import { NavUser } from "./nav-user"
-import { TeamSwitcher } from "@/components/modules/AdminDashboard/Sidebar/team-switcher"
+import { TeamSwitcher } from "./team-switcher";
 import { Sidebar as AdminSidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/ui/sidebar"
 import { useSidebar } from "@/components/ui/sidebar"
 

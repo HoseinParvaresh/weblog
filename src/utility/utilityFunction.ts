@@ -1,9 +1,9 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { PostsColumns } from "@/components/templates/admin-dashboard/columns/postsColumn";
-import { UsersColumns } from "@/components/templates/admin-dashboard/columns/usersColumn";
-import { CategoryColumns } from "@/components/templates/admin-dashboard/columns/categoriesColumn";
-import { CommentsColumns } from "@/components/templates/admin-dashboard/columns/commentsColumn";
+import { PostsColumns } from "@/components/columns/postsColumn";
+import { UsersColumns } from "@/components/columns/usersColumn";
+import { CategoryColumns } from "@/components/columns/categoriesColumn";
+import { CommentsColumns } from "@/components/columns/commentsColumn";
 
 type Collection = "posts" | "users" | "comments" | "categories";
 
